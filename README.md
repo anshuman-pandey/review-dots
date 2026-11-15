@@ -6,7 +6,7 @@
 
 ![Actual Review Dots workspace showing a pinned comment on a synthetic design](docs/assets/workspace.png)
 
-**English local preview · MIT licensed · Python + SQLite**
+**Six-language local preview · MIT licensed · Python + SQLite**
 
 ## One image. A clear review trail.
 
@@ -34,7 +34,11 @@ python server.py
 
 Open **http://127.0.0.1:8092**, choose **Owner**, and enter your owner key. Create a board to receive its reviewer ID and key. In another browser session, choose **Reviewer** and enter those details.
 
-The server binds to localhost. This preview works on the machine running it; it is **not a publicly hosted collaboration service**. A persistent WSGI/Compose setup is included; public HTTPS acceptance and six-language support remain pending. Do not expose Flask's development server to the internet.
+The server binds to localhost. This preview works on the machine running it; it is **not a publicly hosted collaboration service**. A persistent WSGI/Compose setup is included; public HTTPS acceptance and native-speaker review remain pending. Do not expose Flask's development server to the internet.
+
+## Choose your language
+
+English · Deutsch · Español · 日本語 · 简体中文 · 繁體中文. The header picker follows supported browser preferences and remembers your choice when storage is available. Switching languages preserves the selected upload, comment drafts, and pin coordinates. Image pixels, board titles, names and comment bodies are never translated. No external translation service is contacted. Native-speaker review is pending; unexpected framework/network errors may fall back to English.
 
 ## Persistent setup
 
@@ -57,7 +61,7 @@ Images are limited to 10 MiB and 16 megapixels, decoded, oriented, and re-encode
 python -m unittest discover -s tests -v
 ```
 
-Fifteen tests cover image sanitization, invalid input, coordinate limits, stale/cross-board resolution, token rotation, HTTP permissions, export, persistence and private non-overwriting backups. `scripts/browser.cjs` covers the actual Chromium owner/reviewer flow, exports, revocation and mobile overflow. Install Playwright in your test environment and pass `REVIEW_OWNER_KEY` and optionally `REVIEW_URL`/`CHROMIUM`. Run against a disposable test database; it creates synthetic review boards using `tests/fixture.png`.
+Sixteen tests cover image sanitization, invalid input, coordinate limits, stale/cross-board resolution, token rotation, HTTP permissions, export, persistence and private non-overwriting backups. `scripts/browser.cjs` covers the actual Chromium owner/reviewer flow, exports, revocation and mobile overflow. Install Playwright in your test environment and pass `REVIEW_OWNER_KEY` and optionally `REVIEW_URL`/`CHROMIUM`. `scripts/locales.cjs` additionally tests all six languages, browser preference fallback, blocked storage, draft/upload preservation, unchanged canvas, and translated access errors. Run against a disposable test database; it creates synthetic review boards using `tests/fixture.png`.
 
 The screenshot above comes from that running workflow, not a proposed UI. No public release or hosted demo exists yet.
 

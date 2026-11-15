@@ -1,14 +1,15 @@
 {
-  "checked_at": "2026-11-15T17:39:30.286302+00:00",
-  "state": "local English preview",
-  "tests": "15 Python tests passed",
+  "checked_at": "2026-11-15T18:45:07.445170+00:00",
+  "state": "six-language local preview",
+  "tests": "16 Python tests passed",
   "browser": "Chromium upload/reviewer pin/owner resolve and reopen/export/revocation passed; desktop/mobile inspected",
   "pending": [
-    "Six languages",
     "Public HTTPS acceptance",
-    "Broader naming review"
+    "Native-speaker review",
+    "Owner name and publication approval"
   ],
   "published": false,
   "container": "Non-root read-only WSGI container; image/comment/history restart persistence; private backup; clean-volume restore; post-restore comments/resolution/revocation passed",
-  "setup": "Private .env mode 0600, overwrite refusal and Compose configuration passed"
+  "setup": "Private .env mode 0600, overwrite refusal and Compose configuration passed",
+  "locales": "Six-locale Chromium checks passed: regional/persisted preference, blocked storage, selected upload, reviewer draft/coordinates, safe content, unchanged canvas, translated errors and mobile layout. Lock label mobile regression fixed and checked."
 }

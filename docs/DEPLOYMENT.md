@@ -64,4 +64,4 @@ The default address is `127.0.0.1:8092`. Use your operating system's service man
 
 Compose publishes the port on localhost only. A remote reviewer needs an authorized HTTPS reverse proxy/domain in front of the service, with upload limits and timeouts compatible with a 10 MiB file. Verify access from a second device over HTTPS before announcing it as live. This has not been tested or deployed here.
 
-No domain, TLS certificate, remote host, rate limiting, installation-wide storage quota, email delivery, or verified user identities are provided by this recipe. Anyone holding a reviewer key can read that board and add comments; only the owner can resolve them. The current UI is English; six-language support is pending.
+No domain, TLS certificate, remote host, rate limiting, installation-wide storage quota, email delivery, or verified user identities are provided by this recipe. Anyone holding a reviewer key can read that board and add comments; only the owner can resolve them. The interface supports six languages; native-speaker review and public HTTPS acceptance are pending.

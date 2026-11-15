@@ -12,4 +12,6 @@ Provisional name: Review Dots. GitHub `review-dots in:name` search returned no e
 
 Distribution path: publish a reproducible agency design-review example using the bundled synthetic poster. Demonstrate reviewer pin → owner resolution → exported JSON and image. Package the local workflow first; complete an HTTPS/container installation recipe before offering remote-client sharing. Once public and release-ready, evaluate a factual self-hosted image-review directory listing or a useful integration with an agency's static preview workflow against that project's actual contribution policy. No external listing, endorsement, submission or launch post has occurred.
 
-Remaining launch gates: six languages, public HTTPS review when hosting is authorized, broader name review and native-speaker review. No publication authorized for this new product yet.
+Remaining launch gates: public HTTPS review when hosting is authorized, broader name review and native-speaker review. No publication authorized for this new product yet.
+
+A follow-up web search for the exact phrase Review Dots with software/image-feedback terms did not surface an exact competing image-feedback product in returned results. This is a limited naming check, not a trademark or domain clearance.
