@@ -1,13 +1,14 @@
 {
-  "checked_at": "2026-11-15T16:39:42.003982+00:00",
+  "checked_at": "2026-11-15T17:39:30.286302+00:00",
   "state": "local English preview",
-  "tests": "12 unittest tests passed",
+  "tests": "15 Python tests passed",
   "browser": "Chromium upload/reviewer pin/owner resolve and reopen/export/revocation passed; desktop/mobile inspected",
   "pending": [
     "Six languages",
-    "Production server and backup/restore",
     "Public HTTPS acceptance",
     "Broader naming review"
   ],
-  "published": false
+  "published": false,
+  "container": "Non-root read-only WSGI container; image/comment/history restart persistence; private backup; clean-volume restore; post-restore comments/resolution/revocation passed",
+  "setup": "Private .env mode 0600, overwrite refusal and Compose configuration passed"
 }

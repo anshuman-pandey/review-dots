@@ -1,0 +1,19 @@
+services:
+  review-dots:
+    build: .
+    environment:
+      REVIEW_OWNER_KEY: ${REVIEW_OWNER_KEY:?Set a random owner key in .env}
+    ports:
+      - "127.0.0.1:8092:8092"
+    volumes:
+      - review-data:/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  review-data:

@@ -34,7 +34,16 @@ python server.py
 
 Open **http://127.0.0.1:8092**, choose **Owner**, and enter your owner key. Create a board to receive its reviewer ID and key. In another browser session, choose **Reviewer** and enter those details.
 
-The server binds to localhost. This preview works on the machine running it; it is **not a publicly hosted collaboration service**. A production WSGI/HTTPS setup and six-language support remain pending. Do not expose Flask's development server to the internet.
+The server binds to localhost. This preview works on the machine running it; it is **not a publicly hosted collaboration service**. A persistent WSGI/Compose setup is included; public HTTPS acceptance and six-language support remain pending. Do not expose Flask's development server to the internet.
+
+## Persistent setup
+
+```sh
+python3 scripts/setup.py
+docker compose up -d --build
+```
+
+The service uses Waitress, a non-root container, and a persistent SQLite volume. It stays on localhost. See the [deployment and backup guide](docs/DEPLOYMENT.md) for exact storage, recovery, and HTTPS boundaries.
 
 ## Deliberately focused
 
@@ -48,7 +57,7 @@ Images are limited to 10 MiB and 16 megapixels, decoded, oriented, and re-encode
 python -m unittest discover -s tests -v
 ```
 
-Twelve tests cover image sanitization, invalid input, coordinate limits, stale/cross-board resolution, token rotation, HTTP permissions, export and persistence. `scripts/browser.cjs` covers the actual Chromium owner/reviewer flow, exports, revocation and mobile overflow. Install Playwright in your test environment and pass `REVIEW_OWNER_KEY` and optionally `REVIEW_URL`/`CHROMIUM`. Run against a disposable test database; it creates synthetic review boards using `tests/fixture.png`.
+Fifteen tests cover image sanitization, invalid input, coordinate limits, stale/cross-board resolution, token rotation, HTTP permissions, export, persistence and private non-overwriting backups. `scripts/browser.cjs` covers the actual Chromium owner/reviewer flow, exports, revocation and mobile overflow. Install Playwright in your test environment and pass `REVIEW_OWNER_KEY` and optionally `REVIEW_URL`/`CHROMIUM`. Run against a disposable test database; it creates synthetic review boards using `tests/fixture.png`.
 
 The screenshot above comes from that running workflow, not a proposed UI. No public release or hosted demo exists yet.
 
