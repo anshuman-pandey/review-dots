@@ -2,67 +2,62 @@
 
 ### Point to what matters.
 
-**Open-source image feedback. A focused MarkUp.io alternative for pinned comments, resolution, and portable review records.**
+Collect precise feedback on images, resolve comments, and keep a portable review record. A focused, self-hosted alternative to MarkUp.io for PNG and JPEG reviews.
 
-![Actual Review Dots workspace showing a pinned comment on a synthetic design](docs/assets/workspace.png)
+[![CI](https://github.com/anshuman-pandey/review-dots/actions/workflows/check.yml/badge.svg)](https://github.com/anshuman-pandey/review-dots/actions/workflows/check.yml) · [MIT license](LICENSE) · Python + SQLite · Self-hosted
 
-**Six-language local preview · MIT licensed · Python + SQLite**
+![Review Dots: actual application workspace](docs/assets/workspace.png)
 
-## One image. A clear review trail.
+**Public source preview.** The local workflow and container recovery have been tested. There is no hosted demo or tagged product release yet; public HTTPS acceptance remains pending.
 
-Upload a PNG or JPEG. A reviewer places a numbered comment on the exact spot that needs attention. The owner resolves or reopens the comment. Export the image and JSON review history when the work is done.
+## How it works
 
-| Reviewers | Owners | Your records |
-| :--- | :--- | :--- |
-| Open a board with its ID and access key | Upload an immutable review image | SQLite stores images and comments |
-| Place pins by clicking or entering coordinates | Resolve and reopen comments | Export JSON with resolution history |
-| Read and filter comments | Replace reviewer keys to revoke access | Download the sanitized review image |
+1. Upload a PNG or JPEG and share a private reviewer key.
+2. Reviewers place numbered pins by clicking the image or entering coordinates.
+3. Resolve or reopen comments, then export the image and JSON review history.
 
-Reviewer names are self-reported, not verified identities. Everyone with a board key can read its image, comments and export, and add comments. Only the owner can resolve comments, create boards, list boards or replace keys.
+## Try it locally
 
-## Run locally
+Requires Git, Python 3 and Docker with the Compose plugin.
 
-Requires Python 3.10+.
+```sh
+git clone https://github.com/anshuman-pandey/review-dots.git
+cd review-dots
+python3 scripts/setup.py
+docker compose up --build -d
+```
+
+Open **http://127.0.0.1:8092**. Read the generated private `.env` file locally and use its `REVIEW_OWNER_KEY` value to unlock the owner workspace. Setup retains any existing `.env`; do not commit or share this file.
+
+The app binds to localhost and stores data in a persistent Docker volume. Links pointing to localhost work only on your computer. For remote sharing, follow the [HTTPS deployment and backup guide](docs/DEPLOYMENT.md). Avoid `docker compose down -v` unless you intend to delete the stored data.
+
+## Included
+
+- Owner controls for board creation, review resolution and reviewer-key rotation.
+- Keyboard-accessible pin coordinates and layouts for desktop and mobile.
+- Images normalized to PNG with metadata removed.
+
+**Interface languages:** English, German, Spanish, Japanese, Simplified Chinese and Traditional Chinese. Native-speaker review is still pending. User-authored content is never translated.
+
+## Know the boundaries
+
+Images are limited to 10 MiB and 16 megapixels; each board allows 1,000 comments. There is no total storage quota. Reviewer names are self-reported. Anyone with a board key can view its image, read/export comments and add feedback. Only the owner can resolve comments or rotate access. No PDF, video, website annotation, email or threaded discussions.
+
+Private links and reviewer keys grant access to whoever holds them. Keep the owner key separate from participant credentials. This project covers the workflow above, not the full feature set of its commercial reference.
+
+## Development and checks
 
 ```sh
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
-export REVIEW_OWNER_KEY="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')"
-python server.py
-```
-
-Open **http://127.0.0.1:8092**, choose **Owner**, and enter your owner key. Create a board to receive its reviewer ID and key. In another browser session, choose **Reviewer** and enter those details.
-
-The server binds to localhost. This preview works on the machine running it; it is **not a publicly hosted collaboration service**. A persistent WSGI/Compose setup is included; public HTTPS acceptance and native-speaker review remain pending. Do not expose Flask's development server to the internet.
-
-## Choose your language
-
-English · Deutsch · Español · 日本語 · 简体中文 · 繁體中文. The header picker follows supported browser preferences and remembers your choice when storage is available. Switching languages preserves the selected upload, comment drafts, and pin coordinates. Image pixels, board titles, names and comment bodies are never translated. No external translation service is contacted. Native-speaker review is pending; unexpected framework/network errors may fall back to English.
-
-## Persistent setup
-
-```sh
-python3 scripts/setup.py
-docker compose up -d --build
-```
-
-The service uses Waitress, a non-root container, and a persistent SQLite volume. It stays on localhost. See the [deployment and backup guide](docs/DEPLOYMENT.md) for exact storage, recovery, and HTTPS boundaries.
-
-## Deliberately focused
-
-MarkUp.io supports broader digital-content review. Review Dots currently handles **single PNG/JPEG images only**. No live website annotation, PDF/video review, replies, email notifications, accounts, image replacement or full feature parity is claimed. Upload a new board for a changed design so existing pins never silently move to a different image.
-
-Images are limited to 10 MiB and 16 megapixels, decoded, oriented, and re-encoded as PNG without source metadata. Animated images and SVG are rejected. The normalized PNG must also fit within 10 MiB. Each board supports up to 1,000 comments. There is no installation-wide storage quota yet.
-
-## Test the workflow
-
-```sh
 python -m unittest discover -s tests -v
 ```
 
-Sixteen tests cover image sanitization, invalid input, coordinate limits, stale/cross-board resolution, token rotation, HTTP permissions, export, persistence and private non-overwriting backups. `scripts/browser.cjs` covers the actual Chromium owner/reviewer flow, exports, revocation and mobile overflow. Install Playwright in your test environment and pass `REVIEW_OWNER_KEY` and optionally `REVIEW_URL`/`CHROMIUM`. `scripts/locales.cjs` additionally tests all six languages, browser preference fallback, blocked storage, draft/upload preservation, unchanged canvas, and translated access errors. Run against a disposable test database; it creates synthetic review boards using `tests/fixture.png`.
+The published baseline passed **16 Python tests**. Recorded browser acceptance covers: image upload, pin placement, resolution/reopening, history export and key revocation. Container restart and clean-volume backup/restore were also checked. See the [validation record](artifacts/validation.json) for the exact evidence and remaining acceptance gates.
 
-The screenshot above comes from that running workflow, not a proposed UI. No public release or hosted demo exists yet.
+Bug reports should include reproduction steps and browser/runtime versions, with private keys and client data removed. Focused fixes and improvements are welcome through [issues](https://github.com/anshuman-pandey/review-dots/issues) and pull requests.
 
-[Scope and distribution plan](docs/SCOPE.md) · [Launch handoff](HANDOFF.md) · [MIT license](LICENSE)
+## Documentation
+
+[Deployment & backups](docs/DEPLOYMENT.md) · [Scope & comparison](docs/SCOPE.md) · [Validation evidence](artifacts/validation.json) · [License](LICENSE)

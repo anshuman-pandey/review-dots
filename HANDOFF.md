@@ -1,13 +1,11 @@
-# Review Dots handoff
+# Review Dots preview guide
 
-**Runnable:** local six-language owner/reviewer image-feedback app. Install requirements and run `python server.py` with a random `REVIEW_OWNER_KEY` of at least 32 ASCII characters. Open http://127.0.0.1:8092. The README includes the exact commands.
+The [independent public repository](https://github.com/anshuman-pandey/review-dots) contains the source preview. Repository publication is complete; a tagged release and verified hosted demo are still pending.
 
-**Passed:** 16 Python tests; Chromium image upload → reviewer pin → owner resolve/reopen → JSON history download → reviewer-key revocation. Non-root container restart, image/comment/history backup and clean-volume restore, post-restore writes and token revocation passed. Desktop and 390px mobile screenshots inspected; no horizontal overflow. Image coordinates may also be entered by keyboard. A synthetic poster is bundled for testing.
+Start with the [README](README.md) for setup and the product workflow. See [deployment and recovery](docs/DEPLOYMENT.md) before sharing with other computers, and [validation evidence](artifacts/validation.json) for tested behavior and outstanding gates.
 
-**Pending:** public HTTPS acceptance, native-speaker review, and owner name/publication approval. A persistent Waitress/Compose setup and backup/restore helper are included; see docs/DEPLOYMENT.md. This is not a finished public release. Do not run tests against real client data. Keep owner/reviewer keys private; keys stay in browser memory, not URLs or localStorage. Back up the SQLite database while the service is stopped. Revocation cannot erase data already downloaded by a reviewer.
+**Acceptance focus:** Image upload, pin placement, resolution/reopening, history export and key revocation.
 
-**Next action:** owner reviews the local package and creates the independent repository if approved. The owner decides whether to create/publish the independent repository after review. Intended repository: anshuman-pandey/review-dots; not verified public. No push or repository creation performed.
+**Languages:** English, German, Spanish, Japanese, Simplified Chinese and Traditional Chinese. Native-speaker review is still pending.
 
-Six-language Chromium checks pass: regional browser preferences, saved choice, blocked storage, selected upload, reviewer draft/coordinates, unchanged image canvas, literal client content, localized access denial and mobile overflow. A mobile CSS bug hiding the translated lock label was found during visual review, fixed, and regression-checked.
-
-[Open the prefilled repository creation form](https://github.com/new?name=review-dots&description=Open-source%20alternative%20to%20MarkUp.io%20for%20image%20feedback.%20Pin%20comments%20on%20PNG%2FJPEG%20designs%2C%20resolve%20reviews%2C%20revoke%20access%2C%20and%20export%20records.%20Self-hosted%2C%20six%20languages%2C%20MIT%20licensed.&visibility=public). Create an empty repository without adding a README, license, or .gitignore. This form does not publish the prepared code. Publication still needs the owner's go-ahead.
+Keep owner keys and participant credentials private. Use synthetic files when reproducing tests.
