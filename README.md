@@ -61,3 +61,7 @@ Bug reports should include reproduction steps and browser/runtime versions, with
 ## Documentation
 
 [Deployment & backups](docs/DEPLOYMENT.md) · [Scope & comparison](docs/SCOPE.md) · [Validation evidence](artifacts/validation.json) · [License](LICENSE)
+
+## Current verification
+
+See the [26 November audit checkpoint](docs/AUDIT.md) for the verified repository, release links, fresh core test result and remaining deployment/browser gates. Earlier validation records remain dated evidence.
