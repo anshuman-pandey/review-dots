@@ -11,5 +11,28 @@
   "published": false,
   "container": "Non-root read-only WSGI container; image/comment/history restart persistence; private backup; clean-volume restore; post-restore comments/resolution/revocation passed",
   "setup": "Private .env mode 0600, overwrite refusal and Compose configuration passed",
-  "locales": "Six-locale Chromium checks passed: regional/persisted preference, blocked storage, selected upload, reviewer draft/coordinates, safe content, unchanged canvas, translated errors and mobile layout. Lock label mobile regression fixed and checked."
+  "locales": "Six-locale Chromium checks passed: regional/persisted preference, blocked storage, selected upload, reviewer draft/coordinates, safe content, unchanged canvas, translated errors and mobile layout. Lock label mobile regression fixed and checked.",
+  "current_audit": {
+    "checked_at": "2026-11-26T13:36:59.571702+00:00",
+    "source_head": "b7bdcad36a944856ef5f381e5a6e971bac746cfc",
+    "source_publication": "https://github.com/anshuman-pandey/review-dots",
+    "source_public": true,
+    "ci": {
+      "conclusion": "success",
+      "headSha": "b7bdcad36a944856ef5f381e5a6e971bac746cfc",
+      "status": "completed",
+      "url": "https://github.com/anshuman-pandey/review-dots/actions/runs/43975902636"
+    },
+    "local_core_check": {
+      "exit": 0,
+      "summary": "----------------------------------------------------------------------\nRan 16 tests in 0.402s\n\nOK\n"
+    },
+    "release_urls": [],
+    "hosted_demo_url": null,
+    "remaining_gates": [
+      "Public HTTPS acceptance",
+      "Native-speaker review"
+    ],
+    "note": "Historical validation below is retained as dated evidence. Source publication does not establish a hosted deployment."
+  }
 }
